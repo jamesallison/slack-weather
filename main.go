@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	"github.com/jamesallison/slack-weather/weather"
 )
 
 var (
