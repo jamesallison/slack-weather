@@ -17,7 +17,8 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 	if slackWebhook == "" {
-		log.Fatal("$SLACKWEBHOOK must be set")
+		// set to default
+		slackWebhook = "https://hooks.slack.com/services/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"
 	}
 
 	http.HandleFunc("/", rootHandler)
