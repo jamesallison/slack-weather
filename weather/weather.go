@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"encoding/json"
+	"strconv"
 )
 
 type Report struct {
@@ -61,7 +62,7 @@ func GetWeather(location, token string) (Report, error) {
 		return Report{}, err
 	}
 	if res.StatusCode != 200 {
-		return Report{}, errors.New("Non-200 response code")
+		return Report{}, errors.New("Non-200 response code: " + strconv.Itoa(res.StatusCode))
 	}
 	
 	// parse json

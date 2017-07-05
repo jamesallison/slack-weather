@@ -33,20 +33,25 @@ func main() {
 func rootHandler(w http.ResponseWriter, req *http.Request) {
 	// see which location the user entered
 	location := req.Form.Get("text")
+	if location == "" {
+		// default to London
+		location = "London"
+	}
 
 	// get the weather for this location
 	report, err := weather.GetWeather(location, weatherAPIKey)
 
 	if err != nil {
 		fmt.Fprintf(w, "Could not get the weather 😔")
+		log.Print(err)
 		return // the rest of the function will not run
 	}
 
-	fmt.Println(report)
+	fmt.Println(report.Name)
 
 	// construct our lovely message
-	//message := "The weather in " + location + " is " + report.Weather.Description
+	message := "The weather in " + report.Name  + " is " + report.Weather[0].Description
 
 	log.Print(slackWebhook)
-	fmt.Fprintf(w, "Hey 😄")
+	fmt.Fprintf(w, message)
 }
