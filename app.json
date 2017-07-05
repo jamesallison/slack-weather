@@ -5,9 +5,8 @@
 	"website": "http://github.com/jamesallison/slack-weather",
 	"repository": "http://github.com/jamesallison/slack-weather",
 	"env": {
-		"SLACKWEBHOOK": {
-			"description": "The webhook URL provided by Slack",
-			"value": "https://hooks.slack.com/services/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"
+		"WEATHERAPIKEY": {
+			"description": "To interact with the weather api"
 		}
 	}
 }

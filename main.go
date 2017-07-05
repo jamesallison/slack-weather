@@ -14,15 +14,10 @@ var (
 
 func main() {
 	port := os.Getenv("PORT")
-	slackWebhook = os.Getenv("SLACKWEBHOOK")
 	weatherAPIKey = os.Getenv("WEATHERAPIKEY")
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
-	}
-	if slackWebhook == "" {
-		// set to default
-		slackWebhook = "https://hooks.slack.com/services/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"
 	}
 	if weatherAPIKey == "" {
 		// set to default
