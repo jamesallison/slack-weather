@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"encoding/json"
+	"strconv"
 )
 
 type Report struct {
@@ -47,8 +48,8 @@ type Report struct {
 	Cod int `json:"cod"`
 }
 
-func getWeather(token string) (Report, error) {
-	url := "http://api.openweathermap.org/data/2.5/weather?q=London&appid=" + token
+func GetWeather(location, token string) (Report, error) {
+	url := "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + token
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return Report{}, err
@@ -61,7 +62,7 @@ func getWeather(token string) (Report, error) {
 		return Report{}, err
 	}
 	if res.StatusCode != 200 {
-		return Report{}, errors.New("Non-200 response code")
+		return Report{}, errors.New("Non-200 response code:" + strconv.Itoa(res.StatusCode))
 	}
 	
 	// parse json
